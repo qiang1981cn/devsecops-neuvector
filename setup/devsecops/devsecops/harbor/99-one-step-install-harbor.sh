@@ -89,22 +89,14 @@ do
   kubectl get deploy  -n harbor
 done
 
-
-#! /bin/bash
-
 pwd
 ls
 source ./myharbor.sh
 
-
 echo "Login to harbor with docker client ..."
 sudo docker login $HARBOR_URL -u $HARBOR_USR -p $HARBOR_PWD
 
-#! /bin/bash -e
-
 echo "Download docker images for sample application build..."
-
-
 
 sudo docker pull maven:3-jdk-8-slim
 sudo docker tag maven:3-jdk-8-slim $HARBOR_URL/library/java/maven:3-jdk-8-slim
