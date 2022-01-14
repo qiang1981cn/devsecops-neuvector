@@ -292,14 +292,11 @@ The devsecops cluster is now being provisioned by Rancher. It may take a few min
 Once it's ready, please install Longhorn on it. Thank you!
 ```
 
-
-![Rancher UI](./Images-10-13-2021/part1-step4-4-copy-n-paste-devsecops-build-command-pg4.png)
-
 d) Return to your browser with Rancher UI, you should see the `devsecops` cluster is being initialized. It may take 5-10 minutes to complete the whole RKE cluster setup.
 
 While the devsecops cluster is being provisioned, you can continue with step 5 for provisioning additional RKE clusters.
 
-![Rancher UI](./Images-10-13-2021/part1-step4-5-rancher-ui-devsecops-pg5.png)
+![Rancher UI](./Images-10-13-2021/part1-step4-5-rancher-ui-devsecops-pg5.PNG)
 
 
 
