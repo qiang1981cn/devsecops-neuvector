@@ -10,7 +10,7 @@ cd $HOME/devsecops/sonarqube; sh ./99-one-step-install-sonarqube.sh
 
 echo
 echo
-echo "The first part of script in devsecops VM has been completed. Please continue to setup the GitHub Developer Token."
+echo "The first part of script in devsecops VM has been completed. Please continue to setup the GitHub Token."
 echo
 echo
 
