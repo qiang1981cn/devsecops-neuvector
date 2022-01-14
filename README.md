@@ -16,32 +16,31 @@ This repository contains all the scripts and Kubernetes manifests for compliment
 # Background
 
 This repo is the short version of SUSE DevSecOps Workshop:
-https://github.com/dsohk/rancher-devsecops-workshop
+https://github.com/dsohk/rancher-devsecops-workshop .
 
-The purpose of short version is to simplify the setup procedure and make it easier to deliver as a external activity such as a customer demo. 
+The purpose of short version is to simplify the workshop setup procedure and make it easier to deliver as an external activity such as a customer demo. 
 
-Compare to the original version, the change can be summarized:
+Compare to the original version, the changes can be summarized:
 
 - Shrink the lab size:
 From 7 VM to 4 VM, and from 5 Clusters to 4 Clusters. 
-The layout of lab scenario is updated accordingly and shown in the picture in the top.
-Specifically, removed the standalone cluster for Harbor and placed Harbor into the devsecops cluster.
-- Automate the manual config steps in Jenkins for:
-Add credentials for GitHub and SonarQube.
-Add the Env Setting for Harbor.
-Add the Plugin settings for SonarQube.
-- Remove the steps to manually download the cluster config file of devsecops into Harbor VM. It’s automated into part of devsecops VM setting.
-- Combine the installation steps of Longhorn, Harbor, SonarQube, Anchore and Jenkins.  
+The layout of lab scenario is updated accordingly and shown in the picture in the top of the README file.
+In particular, the standalone cluster for Harbor is removed and Harbor is now placed into the devsecops cluster.
+- Automate the manual config steps in Jenkins GUI, because those steps are most difficult to do without a miss:
+1. add credentials for GitHub and SonarQube.
+2. Add the Env Setting for Harbor.
+3. Add the Plugin settings for SonarQube.
+- Remove the mannual steps to download the kubeconfig file of devsecops and copy/paste into Harbor VM. It’s automated as part of devsecops cluster setting.
+- Combine the installation steps of Longhorn, Harbor, SonarQube, Anchore and Jenkins, so no need execute the installation for them one by one.
 
 There are still some steps which have not been further scripted due to different considerations:
 
 - It's infeasible to automate the Rancher UI operation for creating/importing RKE2 Cluster.
 Till Rancher 2.6.3, creating/importing RKE cluster via Rancher API/CLI is not supported.
-- It's infeasible to script the Jenkins setting for plugin Anchore.
-Anchore setting is bound to use web GUI and cannot be automated by script or code.
-- As workshop perpose including explaining the CICD process, the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation for presentation at demo.
-- The Jenkins job (Pipeline) operation (create / trigger build) is possible to script by Jenkins API.
-It remains as GUI operation for presentation at demo.
+- It's infeasible to script the Jenkins setting for Anchore plugin, at lease by the study so far.
+Anchore plugin setting is bound to use web GUI and cannot be automated by script or code.
+- As workshop purpose include to explain the CICD process, it probably is esaier to present during demo if the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation.
+- The Jenkins job (Pipeline) operation (create / trigger build) is possible to script by Jenkins API. Currently it also remains as GUI operation for presentation at demo.
 
 
 # References
