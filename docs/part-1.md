@@ -1,0 +1,373 @@
+
+# Part 1 - Build Your Lab Environment on AWS Lightsail
+
+This script will help you setup a lab environment with 4 VMs running on AWS Lightsail.
+
+Estimated Completion Time: 30 mins
+
+* Rancher Management Server v2.6.1 instance (1 VM)
+* DevSecOps RKE2 cluster running `Harbor`, `Jenkins`, `Anchore`, and `SonarQube` (1 VM)
+* 2 single-node RKE2-based clusters (1 VM each) for deploying applications.
+
+## Pre-requisites
+
+* Github account
+* AWS account with AWS Lightsail full admin access
+* Linux workstation with `git` and `aws` command line v2 installed and AWS credential key configured.
+
+
+## To build the lab on AWS Lightsail
+
+### 1. Clone Git Repository
+
+1) In your linux terminal, create a folder for the workshop and  checkout this repository into a local folder.
+
+```
+mkdir workshop
+```
+
+```
+git clone https://github.com/xiaojinse/rancher-devsecops-workshop-ShortVersion.git workshop
+```
+
+2) To view the content for the Cloned Repo, in your terminal execute below command
+```
+cd ~/workshop && ll 
+```
+you should see below sample outout. 
+```
+dpatel@dns:~> cd ~/workshop/rancher-devsecops-workshop && ll
+total 40
+-rwxr-xr-x 1 dpatel users  831 Sep 30 15:25 cleanlab.sh
+drwxr-xr-x 1 dpatel users  120 Sep 30 15:25 docs
+-rw-r--r-- 1 dpatel users 1065 Sep 30 15:25 LICENSE
+-rw-r--r-- 1 dpatel users 1226 Sep 30 15:25 README.md
+drwxr-xr-x 1 dpatel users  188 Sep 30 15:25 setup
+-rwxr-xr-x 1 dpatel users  999 Sep 30 15:25 setup-rke-cluster1.sh
+-rwxr-xr-x 1 dpatel users  999 Sep 30 15:25 setup-rke-cluster2.sh
+-rwxr-xr-x 1 dpatel users 1846 Sep 30 15:25 setup-rke-devsecops.sh
+-rwxr-xr-x 1 dpatel users 1014 Sep 30 15:25 show-mylab-env.sh
+-rwxr-xr-x 1 dpatel users 8470 Sep 30 15:25 startlab.sh
+```
+
+### 2. Deploy VMs on AWS Lightsail and Setup Rancher Management Server
+
+Run the `startlab.sh --help` to get list of options. You should see the output like below.
+
+```
+❯ ./startlab.sh --help
+  ___ _   _ ___ ___   ___              _
+ / __| | | / __| __| | _ \__ _ _ _  __| |_  ___ _ _
+ \__ \ |_| \__ \ _|  |   / _` | ' \/ _| ' \/ -_) '_|
+ |___/\___/|___/___| |_|_\__,_|_||_\__|_||_\___|_|
+
+
+Welcome to SUSE Rancher DevSecOps Hands-on Lab on AWS Lightsail ...
+This script will help you to provision VMs on AWS Lightsail to get started to run your lab exercise. By default, this script will install Rancher for you after VM is up.
+
+usage: ./startlab.sh [options]
+-s    | --skip-rancher              Skip deploying Rancher after VM is up.
+-h    | --help                      Brings up this menu
+
+```
+
+1) Run `startlab.sh` to deploy VMs on AWS Lightsail and automatically setup Rancher management server. It will prompt you which AWS region you would like to run your lab. 
+
+```
+./startlab.sh
+```
+
+2) You will be prompted to choose which AWS Environment and region you are going to run your lab environment.
+
+```
+dpatel@dns:~/workshop/rancher-devsecops-workshop> ./startlab.sh 
+  ___ _   _ ___ ___   ___              _            
+ / __| | | / __| __| | _ \__ _ _ _  __| |_  ___ _ _ 
+ \__ \ |_| \__ \ _|  |   / _` | ' \/ _| ' \/ -_) '_|
+ |___/\___/|___/___| |_|_\__,_|_||_\__|_||_\___|_|  
+                                                    
+
+Welcome to SUSE Rancher DevSecOps Hands-on Lab on AWS Lightsail ...
+This script will help you to provision VMs on AWS Lightsail to get started to run your lab exercise. By default, this script will install Rancher for you after VM is up.
+
+usage: ./startlab.sh [options]
+-s    | --skip-rancher              Skip deploying Rancher after VM is up.
+-h    | --help                      Brings up this menu
+
+Checking pre-requisites...
+git installed
+awscli v2 installed
+
+Select Your Preferred AWS Environment to run your lab:
+1) US/Canada
+2) Europe
+3) Asia
+4) Quit
+ 3
+Asia 
+Select regions
+1) Mumbai
+2) Seoul
+3) Singapore
+4) Sydney
+5) Tokyo
+6) Quit
+
+ 1
+You picked: Mumbai
+Provisioning VM in your AWS Lightsail region ap-south-1 as lab environment ...
+```
+
+Choose the region closest to you to continue your lab setup. The script will then
+a) Provision VMs on your AWS account with region you picked, 
+b) Configure firewall rules for these VMs, 
+c) Download AWS SSH keypair to your local folder to access to these VMs, and
+d) Create shortcut files for you to access to the VMs in your lab environment.
+e) Install Kubernetes tools (`Kubectl` & `helm`)
+f) Deploy Rancher using Docker
+
+#### Incase if you experience Error creating AWS Lighsail instance
+
+Possible error `An error occurred (InvalidInputException) when calling the CreateInstances operation: We're sorry, your AWS account is pending verification. Please try again later`
+
+Resolution - 
+Perform cleanup by executing the below script. 
+```
+./cleanlab.sh
+```
+Post the cleanup re-run the startlab.sh script.
+
+When the script has finished, you will see a table of VMs with IP addresses, the Rancher instance URL, and other useful files created in your local folder. For example, this is the extract of my output after running the startlab script.
+
+*The IP addresses for you will be different from those in the screenshots in this lab guide.*
+
+```
+---------------------------------------------------------
+Your Rancher Server is ready.
+
+Your Rancher Server URL: https://rancher.35.86.176.2.sslip.io
+Bootstrap Password: admin
+---------------------------------------------------------
+Your lab environment on AWS Lightsail us-west-2 is ready.
+
+Here's the list of VMs running in your lab environment (See file: mylab_vm_list.txt):
+--------------------------------------------------------------------------
+|                              GetInstances                              |
++--------------------+--------------------+-------------------+----------+
+|       VMname       | privateIpAddress   |  publicIpAddress  |  state   |
++--------------------+--------------------+-------------------+----------+
+|  suse0908-cluster1 |  172.26.14.207     |  54.203.21.164    |  running |
+|  suse0908-devsecops|  172.26.37.152     |  18.237.59.191    |  running |
+|  suse0908-rancher  |  172.26.26.97      |  35.86.176.2      |  running |
+|  suse0908-cluster2 |  172.26.35.181     |  34.211.116.128   |  running |
++--------------------+--------------------+-------------------+----------+
+To SSH into the VM on the lab, you can run this command:
+
+./ssh-mylab-<vm>.sh
+
+```
+Save the Rancher Server URL and Bootstrap Password for the next steps.
+
+3) Open the Rancher URL in a browser window. This may take few mins to get Rancher Instance up and running. 
+
+4) Toggle back to the terminal and execute the below command to see the list of files (text and scripts).
+
+```
+ls -lh 
+```
+Sample output below.
+
+```
+
+helen@SUSE-481694:~/devsecops> ll
+total 220
+-rwxr-xr-x 1 helen users    726 Jan  7 19:37 cleanlab.sh
+drwxr-xr-x 5 helen users   4096 Jan 14 13:00 docs
+-rw-r--r-- 1 helen users   1065 Jan  7 19:37 LICENSE
+-rw-r--r-- 1 helen users     33 Jan 14 11:55 mylab_aws_region.sh
+-rw------- 1 helen users   1676 Jan 14 11:08 mylab.key
+-rw-r--r-- 1 helen users    381 Jan 14 11:08 mylab.pub
+-rw-r--r-- 1 helen users     30 Jan 14 11:55 mylab_rancher_version.sh
+-rw------- 1 helen users    386 Jan 14 11:08 mylab-ssh-config
+-rw-r--r-- 1 helen users    783 Jan 14 11:08 mylab_vm_list.txt
+-rw-r--r-- 1 helen users     26 Jan 14 11:55 mylab_vm_prefix.sh
+-rw-r--r-- 1 helen users 134364 Jan 14 12:56 overview.png
+-rw-r--r-- 1 helen users   1210 Jan  7 19:37 README.md
+drwxr-xr-x 4 helen users   4096 Jan 11 14:55 setup
+-rwxr-xr-x 1 helen users   1083 Jan 14 12:49 setup-rke-cluster1.sh
+-rwxr-xr-x 1 helen users   1081 Jan 14 12:50 setup-rke-cluster2.sh
+-rwxr-xr-x 1 helen users   1198 Jan 14 11:16 setup-rke-devsecops.sh
+-rwxr-xr-x 1 helen users   1158 Jan 14 10:01 show-mylab-env.sh
+-rwxr-xr-x 1 helen users     68 Jan 14 11:08 ssh-mylab-cluster1.sh
+-rwxr-xr-x 1 helen users     68 Jan 14 11:08 ssh-mylab-cluster2.sh
+-rwxr-xr-x 1 helen users     68 Jan 14 11:08 ssh-mylab-devsecops.sh
+-rwxr-xr-x 1 helen users     67 Jan 14 11:08 ssh-mylab-rancher.sh
+-rwxr-xr-x 1 helen users   7428 Jan 13 10:43 startlab.sh
+
+```
+
+You can access to any of your VMs with the `ssh-mylab-<VM>.sh` script. The IP addresses of your VMs are also captured in the file `mylab_vm_list.txt`
+
+### 2. Provision DevSecOps RKE cluster from Rancher UI
+
+In this step, we will provision the DevSecOps environment as a RKE cluster by using Rancher UI. 
+
+a) Open browser to navigate to the Rancher URL captured in earlier step.
+
+Sample output
+```
+Your Rancher Server URL: https://rancher.35.86.176.2.sslip.io
+Bootstrap Password: admin
+```
+By pass the invalid SSL certificate warning, you should be prompted a `Welcome to Rancher` page. 
+Provide the bootstrap password `admin` generated during setup. Hit `Log in with Local User`
+
+Following page will be presented with 
+a) You can setup your own administrative password  by selecting `Set a specific password to use`
+b) You will be presented with Rancher URL
+Accept the Terms and Conditions
+
+![Rancher UI](./Images-10-13-2021/part1-step3-3-rancher-ui-change-rancher-password-post-initial-login-and-rnacher-url-pg2.png)
+
+Finally you will be presented with the Rancher Homepage
+
+![Rancher UI](./Images-10-13-2021/part1-step3-3-rancher-ui-rancher-homepage-pg3.png)
+
+
+b) Add `devsecops` cluster in Rancher. Navigated to Rancher Cluster Management UI. Click `Create` button. 
+
+![Rancher UI](./Images-10-13-2021/part1-step4-0-rancher-ui-create-custom-cluster-devsecops-pg0.png)
+
+You will be presented `Cluster:Create` page. 
+
+Under section `Provision a new node and create a cluster using RKE2/K3s (Tech Preview)`, toggle the switch `RKE2/k3s`. With Rancher 2.6 you can now provisoin RKE2 & K3s cluster via Rancher UI.
+
+To create a new cluster choose the `custom` option to provision clusters on existing nodes 
+
+![Rancher UI](./Images-10-13-2021/part1-step4-1-rancher-ui-create-cluster-custom-devsecops-pg1.png)
+
+b) You will be presented with `Cluster:Create Custom`form. Enter the cluster name as `devsecops` and leave the rest of the settings as default and click `Create` button. You will be presented with cluster registration command to create the RKE cluster on your VM. Check the box 'Insecure: Select this to skip TLS...'. 
+Click on `registration command` to copy the command into your clipboard.
+
+![Rancher UI](./Images-10-13-2021/part1-step4-2-rancher-ui-create-cluster-custom-devsecops-pg2.png)
+
+![Rancher UI](./Images-10-13-2021/part1-step4-3-rancher-ui-create-cluster-custom-devsecops-pg3.png)
+
+c) Open your Linux workstation terminal and switch to the working directory where this repo has been checked out. 
+
+Run the script `./setup-rke-devsecops.sh` and paste the command you copied into the prompt from this script.
+
+```
+./setup-rke-devsecops.sh
+```
+```
+❯ ./setup-rke-devsecops.sh
+Enter Rancher registration command for devsecops cluster:
+```
+Sample output below
+
+
+![Rancher UI](./Images-10-13-2021/part1-step4-4-copy-n-paste-devsecops-build-command-pg4.png)
+
+d) Return to your browser with Rancher UI, you should see the `devsecops` cluster is being initialized. It may take 5-10 minutes to complete the whole RKE cluster setup.
+
+While the devsecops cluster is being provisioned, you can continue with step 5 for provisioning additional RKE clusters.
+
+![Rancher UI](./Images-10-13-2021/part1-step4-5-rancher-ui-devsecops-pg5.png)
+
+
+
+### 3. Setup application in DevSecOps environment: Harbor, Anchore, SonarQube and Jenkins. 
+
+In this part, we will actually execute below tasks in devsecops VM. Most of them have been scripted.
+
+Step 1. Install tools like kubectl and helm.
+
+Step 2. Install Longhorn. It's needed to provide Persistent Volume for applications like Anchore, SonarQube and Jenkins.
+
+Step 3. Install Anchore.
+
+Step 4. Install SonarQube and automate necessary steps as:
+- Change the initial password (mandatory to start using SonarQube).
+- Create a token from SonarQube, so later, Jenkins can trigger the static code scanning with this token.
+- Create a project in SonarQube.
+
+Step 5. Setup a GitHub token in GitHub Website. (**Only this step needs be manually executed.**)
+
+Step 6. Generate the config file for Jenkins installation. The config file will be replaced with the generated GitHub token, SonarQube token & project name, Harbr access info and Anchore access info.
+
+Step 7. Install Jenkins.
+
+
+#### 3.1 Execute the first script in devsecops vm
+ 
+Login to your devsecops instance VM with SSH from your linux workstation.
+
+```
+./ssh-mylab-devsecops.sh
+``` 
+ 
+Sample output below indicates you are on devsecops VMs Terminal.
+
+```
+suse0908-devsecops ec2-user@ip-172-26-16-224:~>ll
+total 40
+-rwxr-xr-x 1 ec2-user users 407 Jan 14 02:08 99_start_devsecops_1.sh
+-rwxr-xr-x 1 ec2-user users  88 Jan 14 02:08 99_start_devsecops_2.sh
+drwxr-xr-x 2 ec2-user users   6 Mar  7  2020 bin
+drwxr-xr-x 7 ec2-user users  83 Jan 14 02:08 devsecops
+-rw-r--r-- 1 ec2-user users  62 Jan 14 02:50 mygithub.sh
+``` 
+ 
+Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4 as explained above.
+```
+./99_start_devsecops_1.sh
+```
+
+#### 3.2 Generate the GitHub Personal Access Token.
+This is the step 5 as explained above, that in order to integrate Jenkins with your GitHub account, you have to generate your personal access token for this.
+
+a) Login to your GitHub account
+
+b) Under your avatar icon, pull down the menu and choose `Settings` menu item.
+
+c) Choose `Developer Settings` menu on the left, choose `Personal Access Tokens`
+
+d) Click `Generate new token` button.
+
+e) Enter `workshop` (or whatever you like) in the name field.
+
+f) Choose `repo` and `user:email` in the privieged for this token.
+
+![GitHub Personal Access Token](./Images-10-13-2021/part3-setup-my-github-personal-access-token-repo.png)
+
+
+![GitHub Personal Access Token](./Images-10-13-2021/part3-setup-my-github-personal-access-token-user-email.png)
+
+g) Save and record down the generated token in the `mygithub.sh` file for configuring CI Pipeline in Jenkins later.
+
+```
+suse0908-devsecops ec2-user@ip-172-26-16-224:~>vim mygithub.sh
+```
+And paste your token as the value to env var GITHUB_SECRET.
+
+![GitHub Personal Access Token](./Images-10-13-2021/part1-SaveGitHubToken.png)
+
+#### 3.3 Execute the second script in devsecops vm
+
+Run the script 99_start_devsecops_2.sh and it will complete the step 6 to step 7 as explained above.
+```
+./99_start_devsecops_2.sh
+```
+
+Please be aware that the installation will take time which varys due to your lab environment status.
+
+* Longhorn (approx 5 mins)
+* Harbor (approx 10 mins)
+* Anchore (approx 3/4 mins)
+* Sonarqube (approx < 6 mins)
+* Jenkins (approx 5 mins)
+
+
+With this, we have successfully completed all required steps in Part 1. We are ready to move to the Part 2 [Step 2 - Configure GitHub and Jenkins](part-2.md)
+

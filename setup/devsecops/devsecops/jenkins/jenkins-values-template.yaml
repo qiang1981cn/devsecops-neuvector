@@ -1,0 +1,85 @@
+serviceAccount:
+  create: false
+  name: jenkins
+controller:
+  image: "THE_HARBOR_URL/library/myjenkins"
+  tag: "v1.0"
+  imagePullPolicy: "Always"
+  installPlugins: false
+  serviceType: NodePort
+  # jenkinsUrl: jenkins.suse.lab
+  # jenkinsUrlProtocol: https
+  resources:
+    requests:
+      cpu: "2000m"
+      memory: "2048Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2048Mi"
+  # sidecars:
+  #   configAutoReload:
+  #     enabled: false
+  #   other:
+  #   - name: smee
+  #     image: docker.io/twalter/smee-client:1.0.2
+  #     args: ["--port", "{{ .Values.controller.servicePort }}", "--path", "/github-webhook/", "--url", "https://smee.io/FqIskMikN91QAv7"]
+  #     resources:
+  #       limits:https://smee.io/
+  #         cpu: 50m
+  #         memory: 128Mi
+  #       requests:
+  #         cpu: 10m
+  #         memory: 32Mi
+  prometheus:
+    enabled: false
+    # Additional labels to add to the ServiceMonitor object
+    serviceMonitorAdditionalLabels: {}
+    # Set a custom namespace where to deploy ServiceMonitor resource
+    # serviceMonitorNamespace: monitoring
+    scrapeInterval: 60s
+    # This is the default endpoint used by the prometheus plugin
+    scrapeEndpoint: /prometheus
+    # Additional labels to add to the PrometheusRule object
+    alertingRulesAdditionalLabels: {}
+    # An array of prometheus alerting rules
+    # See here: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+    # The `groups` root object is added by default, simply add the rule entries
+    alertingrules: []
+    # Set a custom namespace where to deploy PrometheusRule resource
+    prometheusRuleNamespace: ""
+  JCasC:
+    configScripts:
+      jenkins-casc-configs: |
+        jenkins:
+          systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+          globalNodeProperties:
+          - envVars:
+              env:
+              - key: HARBOR_URL
+                value: THE_HARBOR_URL
+        credentials:
+          system:
+            domainCredentials:
+            - credentials:
+              - string:
+                  description: "my-github"
+                  id: "my-github"
+                  scope: GLOBAL
+                  secret: "GITHUB_SECRET" 
+              - string:
+                  description: "sonarqube-spring-petclinic"
+                  id: "sonarqube-spring-petclinic"
+                  scope: GLOBAL
+                  secret: SONARQUBE_SECRET         
+        unclassified:
+          sonarglobalconfiguration:                  # mandatory
+            buildWrapperEnabled: true
+            installations:                           # mandatory
+              - name: "My SonarQube"                         
+                serverUrl: "http://SONARQUBE_URL"
+                credentialsId: sonarqube-spring-petclinic   
+persistence:
+  accessMode: "ReadWriteMany"
+  storageClass: "longhorn"
+
+
