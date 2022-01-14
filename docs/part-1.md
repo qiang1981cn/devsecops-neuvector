@@ -36,18 +36,18 @@ cd ~/workshop && ll
 ```
 you should see below sample outout. 
 ```
-dpatel@dns:~> cd ~/workshop/rancher-devsecops-workshop && ll
-total 40
--rwxr-xr-x 1 dpatel users  831 Sep 30 15:25 cleanlab.sh
-drwxr-xr-x 1 dpatel users  120 Sep 30 15:25 docs
--rw-r--r-- 1 dpatel users 1065 Sep 30 15:25 LICENSE
--rw-r--r-- 1 dpatel users 1226 Sep 30 15:25 README.md
-drwxr-xr-x 1 dpatel users  188 Sep 30 15:25 setup
--rwxr-xr-x 1 dpatel users  999 Sep 30 15:25 setup-rke-cluster1.sh
--rwxr-xr-x 1 dpatel users  999 Sep 30 15:25 setup-rke-cluster2.sh
--rwxr-xr-x 1 dpatel users 1846 Sep 30 15:25 setup-rke-devsecops.sh
--rwxr-xr-x 1 dpatel users 1014 Sep 30 15:25 show-mylab-env.sh
--rwxr-xr-x 1 dpatel users 8470 Sep 30 15:25 startlab.sh
+helen@SUSE-481694:~> cd ~/workshop && ll
+total 44
+-rwxr-xr-x 1 helen users  726 Jan 14 16:10 cleanlab.sh
+drwxr-xr-x 5 helen users 4096 Jan 14 16:10 docs
+-rw-r--r-- 1 helen users 1065 Jan 14 16:10 LICENSE
+-rw-r--r-- 1 helen users 1215 Jan 14 16:10 README.md
+drwxr-xr-x 4 helen users 4096 Jan 14 16:10 setup
+-rwxr-xr-x 1 helen users 1083 Jan 14 16:10 setup-rke-cluster1.sh
+-rwxr-xr-x 1 helen users 1081 Jan 14 16:10 setup-rke-cluster2.sh
+-rwxr-xr-x 1 helen users 1198 Jan 14 16:10 setup-rke-devsecops.sh
+-rwxr-xr-x 1 helen users 1160 Jan 14 16:10 show-my-lab-env.sh
+-rwxr-xr-x 1 helen users 7428 Jan 14 16:10 startlab.sh
 ```
 
 ### 2. Deploy VMs on AWS Lightsail and Setup Rancher Management Server
@@ -101,10 +101,10 @@ awscli v2 installed
 Select Your Preferred AWS Environment to run your lab:
 1) US/Canada
 2) Europe
-3) Asia
+3) Asia/Pacific
 4) Quit
  3
-Asia 
+Asia/Pacific
 Select regions
 1) Mumbai
 2) Seoul
@@ -112,10 +112,9 @@ Select regions
 4) Sydney
 5) Tokyo
 6) Quit
-
- 1
-You picked: Mumbai
-Provisioning VM in your AWS Lightsail region ap-south-1 as lab environment ...
+ 5
+You picked: Tokyo
+Provisioning VM in your AWS Lightsail region ap-northeast-1 as lab environment ...
 ```
 
 Choose the region closest to you to continue your lab setup. The script will then
@@ -326,6 +325,8 @@ Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4
 
 #### 3.2 Generate the GitHub Personal Access Token.
 This is the step 5 as explained above, that in order to integrate Jenkins with your GitHub account, you have to generate your personal access token for this.
+
+** If you already have a Personal Access Token, you can reuse it and MUST store it into `mygithub.sh` as the below step g).**
 
 a) Login to your GitHub account
 
