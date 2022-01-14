@@ -149,7 +149,7 @@ Till now, the GitHub repositories are ready to work with Jenkins.
 ## 3. Configure Jenkins 
 
 Most of the Jenkins configuration has been automated by Jenkins Plugin: `Jenkins Configuration as Code`.
-However, the Anchore part is not covered by this Plugin so we have to mannually setup it.
+However, the Anchore part is not covered by the `Jenkins Configuration as Code` so we have to mannually setup it.
 
 a) Open Jenkins URL in your browser and login.
 

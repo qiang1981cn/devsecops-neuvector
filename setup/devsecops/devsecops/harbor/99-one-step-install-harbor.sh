@@ -94,7 +94,7 @@ done
 
 pwd
 ls
-source myharbor.sh
+source ./myharbor.sh
 
 
 echo "Login to harbor with docker client ..."
@@ -104,7 +104,7 @@ sudo docker login $HARBOR_URL -u $HARBOR_USR -p $HARBOR_PWD
 
 echo "Download docker images for sample application build..."
 
-source myharbor.sh
+
 
 sudo docker pull maven:3-jdk-8-slim
 sudo docker tag maven:3-jdk-8-slim $HARBOR_URL/library/java/maven:3-jdk-8-slim
