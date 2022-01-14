@@ -258,6 +258,39 @@ Run the script `./setup-rke-devsecops.sh` and paste the command you copied into 
 Enter Rancher registration command for devsecops cluster:
 ```
 Sample output below
+```
+helen@SUSE-481694:~/workshop> ./setup-rke-devsecops.sh
+Enter Rancher registration command for devsecops cluster:
+curl --insecure -fL https://rancher.35.72.34.68.sslip.io/system-agent-install.sh | sudo  sh -s - --server https://rancher.35.72.34.68.sslip.io --label 'cattle.io/os=linux' --token r5g8qc2svglksrzr9g96nxxp2p6n8hlhlj4phzzkd2ctmggnrn5snl --ca-checksum 1d13e8d5f0de3b4f28677cbdc3843f1572ee380e0e36bcf144786acb5412158a --etcd --controlplane --worker
+
+Registering devsecops as All-in-one RKE...
+curl --insecure -fL https://rancher.35.72.34.68.sslip.io/system-agent-install.sh | sudo sh -s - --server https://rancher.35.72.34.68.sslip.io --label 'cattle.io/os=linux' --token r5g8qc2svglksrzr9g96nxxp2p6n8hlhlj4phzzkd2ctmggnrn5snl --ca-checksum 1d13e8d5f0de3b4f28677cbdc3843f1572ee380e0e36bcf144786acb5412158a --node-name devsecops --address 35.72.184.96 --internal-address 172.26.34.168 --etcd --controlplane --worker
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 23771    0 23771    0     0   142k      0 --:--:-- --:--:-- --:--:--  142k
+[INFO]  Label: cattle.io/os=linux
+[INFO]  Role requested: etcd
+[INFO]  Role requested: controlplane
+[INFO]  Role requested: worker
+[INFO]  Using default agent configuration directory /etc/rancher/agent
+[INFO]  Using default agent var directory /var/lib/rancher/agent
+[INFO]  Determined CA is necessary to connect to Rancher
+[INFO]  Successfully downloaded CA certificate
+[INFO]  Value from https://rancher.35.72.34.68.sslip.io/cacerts is an x509 certificate
+[INFO]  Successfully tested Rancher connection
+[INFO]  Downloading rancher-system-agent from https://rancher.35.72.34.68.sslip.io/assets/rancher-system-agent-amd64
+[INFO]  Successfully downloaded the rancher-system-agent binary.
+[INFO]  Generating Cattle ID
+[INFO]  Successfully downloaded Rancher connection information
+[INFO]  systemd: Creating service file
+[INFO]  Creating environment file /etc/systemd/system/rancher-system-agent.env
+[INFO]  Enabling rancher-system-agent.service
+Created symlink /etc/systemd/system/multi-user.target.wants/rancher-system-agent.service → /etc/systemd/system/rancher-system-agent.service.
+[INFO]  Starting/restarting rancher-system-agent.service
+
+The devsecops cluster is now being provisioned by Rancher. It may take a few minutes to complete.
+Once it's ready, please install Longhorn on it. Thank you!
+```
 
 
 ![Rancher UI](./Images-10-13-2021/part1-step4-4-copy-n-paste-devsecops-build-command-pg4.png)
