@@ -144,10 +144,10 @@ When the script has finished, you will see a table of VMs with IP addresses, the
 ---------------------------------------------------------
 Your Rancher Server is ready.
 
-Your Rancher Server URL: https://rancher.35.86.176.2.sslip.io
+Your Rancher Server URL: https://rancher.35.72.34.68.sslip.io
 Bootstrap Password: admin
 ---------------------------------------------------------
-Your lab environment on AWS Lightsail us-west-2 is ready.
+Your lab environment on AWS Lightsail ap-northeast-1 is ready.
 
 Here's the list of VMs running in your lab environment (See file: mylab_vm_list.txt):
 --------------------------------------------------------------------------
@@ -155,10 +155,10 @@ Here's the list of VMs running in your lab environment (See file: mylab_vm_list.
 +--------------------+--------------------+-------------------+----------+
 |       VMname       | privateIpAddress   |  publicIpAddress  |  state   |
 +--------------------+--------------------+-------------------+----------+
-|  suse0908-cluster1 |  172.26.14.207     |  54.203.21.164    |  running |
-|  suse0908-devsecops|  172.26.37.152     |  18.237.59.191    |  running |
-|  suse0908-rancher  |  172.26.26.97      |  35.86.176.2      |  running |
-|  suse0908-cluster2 |  172.26.35.181     |  34.211.116.128   |  running |
+|  suse0908-cluster2 |  172.26.22.100     |  54.178.109.244   |  running |
+|  suse0908-cluster1 |  172.26.12.11      |  54.250.113.71    |  running |
+|  suse0908-devsecops|  172.26.34.168     |  35.72.184.96     |  running |
+|  suse0908-rancher  |  172.26.36.153     |  35.72.34.68      |  running |
 +--------------------+--------------------+-------------------+----------+
 To SSH into the VM on the lab, you can run this command:
 
