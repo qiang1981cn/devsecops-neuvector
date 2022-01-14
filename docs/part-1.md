@@ -165,8 +165,6 @@ To SSH into the VM on the lab, you can run this command:
 ./ssh-mylab-<vm>.sh
 
 ```
-Save the Rancher Server URL and Bootstrap Password for the next steps.
-
 3) Open the Rancher URL in a browser window. This may take few mins to get Rancher Instance up and running. 
 
 4) Toggle back to the terminal and execute the below command to see the list of files (text and scripts).
@@ -215,7 +213,7 @@ a) Open browser to navigate to the Rancher URL captured in earlier step.
 
 Sample output
 ```
-Your Rancher Server URL: https://rancher.35.86.176.2.sslip.io
+Your Rancher Server URL: https://rancher.35.72.34.68.sslip.io
 Bootstrap Password: admin
 ```
 By pass the invalid SSL certificate warning, you should be prompted a `Welcome to Rancher` page. 
