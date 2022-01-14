@@ -177,5 +177,5 @@ Check our applivation version  `spring-petclinic:v1.0.x` as indicated in previou
 
 Your PetClinic App is been successfully depoyed.
 
-With this, let's put everything together and proceed to [Part 5 Put Everything together](part-5.md)
+With this, let's put everything together and proceed to [Part 5 Put Everything Together](part-5.md)
 
