@@ -390,6 +390,18 @@ Run the script 99_start_devsecops_2.sh and it will complete the step 6 to step 7
 ```
 ./99_start_devsecops_2.sh
 ```
+If the script is successfully executed, you will see Jenkins result in printout as:
+```
+Your Jenkins instance is ready
+
+Your Jenkins instance is ready ...
+http://35.72.184.96:30771/login
+Username: admin
+Password: fn9IsATonVZLiS7aLjHzI5
+
+Your Jenkins Github webhook Payload URL:
+http://35.72.184.96:30771/github-webhook/
+```
 
 Please be aware that the installation will take time which varys due to your lab environment status.
 
