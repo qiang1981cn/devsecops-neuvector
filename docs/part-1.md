@@ -349,7 +349,7 @@ Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4
 ```
 
 #### 3.2 Generate the GitHub Personal Access Token.
-This is the step 5 as explained above, that in order to integrate Jenkins with your GitHub account, you have to generate your personal access token for this.
+This is the step 5 as explained above that in order to integrate Jenkins with your GitHub account, need to generate your personal access token.
 
 **If you already have a Personal Access Token, you can reuse it and MUST store it into `mygithub.sh` as the below step g).**
 
