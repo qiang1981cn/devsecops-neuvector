@@ -224,7 +224,7 @@ a) You can setup your own administrative password  by selecting `Set a specific 
 b) You will be presented with Rancher URL
 Accept the Terms and Conditions
 
-![Rancher UI](./Images-10-13-2021/part1-step3-3-rancher-ui-change-rancher-password-post-initial-login-and-rnacher-url-pg2.png)
+![Rancher UI](./Images-10-13-2021/part1-step3-3-rancher-ui-change-rancher-password-post-initial-login-and-rnacher-url-pg2.PNG)
 
 Finally you will be presented with the Rancher Homepage
 
