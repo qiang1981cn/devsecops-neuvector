@@ -315,9 +315,9 @@ Step 4. Install SonarQube and automate necessary steps as:
 - Create a token from SonarQube, so later, Jenkins can trigger the static code scanning with this token.
 - Create a project in SonarQube.
 
-Step 5. Setup a GitHub token in GitHub Website. (**Only this step needs be manually executed.**)
+Step 5. Setup a GitHub token in GitHub Website. (**Only this step is not scripted.**)
 
-Step 6. Generate the config file for Jenkins installation. The config file will be replaced with the generated GitHub token, SonarQube token & project name, Harbr access info and Anchore access info.
+Step 6. Generate the config file for Jenkins installation. The config file will be updated with the generated GitHub token, SonarQube token & project name, Harbr access info.
 
 Step 7. Install Jenkins.
 
@@ -333,13 +333,14 @@ Login to your devsecops instance VM with SSH from your linux workstation.
 Sample output below indicates you are on devsecops VMs Terminal.
 
 ```
-suse0908-devsecops ec2-user@ip-172-26-16-224:~>ll
-total 40
--rwxr-xr-x 1 ec2-user users 407 Jan 14 02:08 99_start_devsecops_1.sh
--rwxr-xr-x 1 ec2-user users  88 Jan 14 02:08 99_start_devsecops_2.sh
+suse0908-devsecops ec2-user@ip-172-26-34-168:~>ll
+total 16
+-rwxr-xr-x 1 ec2-user users 533 Jan 14 07:37 99_start_devsecops_1.sh
+-rwxr-xr-x 1 ec2-user users  88 Jan 14 07:37 99_start_devsecops_2.sh
 drwxr-xr-x 2 ec2-user users   6 Mar  7  2020 bin
-drwxr-xr-x 7 ec2-user users  83 Jan 14 02:08 devsecops
--rw-r--r-- 1 ec2-user users  62 Jan 14 02:50 mygithub.sh
+drwxr-xr-x 7 ec2-user users  83 Jan 14 07:37 devsecops
+-rw-r--r-- 1 ec2-user users  22 Jan 14 07:37 mygithub.sh
+-rw-r--r-- 1 ec2-user users 783 Jan 14 07:37 mylab_vm_list.txt
 ``` 
  
 Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4 as explained above.
@@ -350,7 +351,7 @@ Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4
 #### 3.2 Generate the GitHub Personal Access Token.
 This is the step 5 as explained above, that in order to integrate Jenkins with your GitHub account, you have to generate your personal access token for this.
 
-** If you already have a Personal Access Token, you can reuse it and MUST store it into `mygithub.sh` as the below step g).**
+**If you already have a Personal Access Token, you can reuse it and MUST store it into `mygithub.sh` as the below step g).**
 
 a) Login to your GitHub account
 
