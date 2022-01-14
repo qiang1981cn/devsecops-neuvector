@@ -65,7 +65,7 @@ controller:
                   description: "my-github"
                   id: "my-github"
                   scope: GLOBAL
-                  secret: "GITHUB_SECRET" 
+                  secret: GITHUB_SECRET 
               - string:
                   description: "sonarqube-spring-petclinic"
                   id: "sonarqube-spring-petclinic"
