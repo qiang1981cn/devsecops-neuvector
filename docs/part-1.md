@@ -348,6 +348,11 @@ Run the script 99_start_devsecops_1.sh and it will complete the step 1 to step 4
 ./99_start_devsecops_1.sh
 ```
 
+If the script is successfully executed, you will see the result in printout as:
+```
+The first part of script in devsecops VM has been completed. Please continue to setup the GitHub Developer Token.
+```
+
 #### 3.2 Generate the GitHub Personal Access Token.
 This is the step 5 as explained above that in order to integrate Jenkins with your GitHub account, need to generate your personal access token.
 

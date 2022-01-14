@@ -92,6 +92,8 @@ done
 
 #! /bin/bash
 
+pwd
+ls
 source myharbor.sh
 
 
