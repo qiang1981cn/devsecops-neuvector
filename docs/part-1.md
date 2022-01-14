@@ -217,11 +217,7 @@ Your Rancher Server URL: https://rancher.35.72.34.68.sslip.io
 Bootstrap Password: admin
 ```
 By pass the invalid SSL certificate warning, you should be prompted a `Welcome to Rancher` page. 
-Provide the bootstrap password `admin` generated during setup. Hit `Log in with Local User`
-
-Following page will be presented with 
-a) You can setup your own administrative password  by selecting `Set a specific password to use`
-b) You will be presented with Rancher URL
+Provide the bootstrap password `admin` and setup your own administrative password  by selecting `Set a specific password to use`
 Accept the Terms and Conditions
 
 ![Rancher UI](./Images-10-13-2021/part1-step3-3-rancher-ui-change-rancher-password-post-initial-login-and-rnacher-url-pg2.PNG)
@@ -233,7 +229,7 @@ Finally you will be presented with the Rancher Homepage
 
 b) Add `devsecops` cluster in Rancher. Navigated to Rancher Cluster Management UI. Click `Create` button. 
 
-![Rancher UI](./Images-10-13-2021/part1-step4-0-rancher-ui-create-custom-cluster-devsecops-pg0.png)
+![Rancher UI](./Images-10-13-2021/part1-step4-0-rancher-ui-create-custom-cluster-devsecops-pg0.PNG)
 
 You will be presented `Cluster:Create` page. 
 
