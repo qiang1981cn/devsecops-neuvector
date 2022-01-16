@@ -18,7 +18,7 @@ This repository contains all the scripts and Kubernetes manifests for compliment
 This repo is the short version of SUSE DevSecOps Workshop:
 https://github.com/dsohk/rancher-devsecops-workshop
 
-The purpose of short version is to simplify the workshop setup procedure and make it easier to deliver as an external activity such as a customer demo. 
+The purpose of short version is to simplify the setup procedure for the workshop and make it easier to deliver the DevSecOps and CICD part, especially as an external activity such as a customer demo. Therefore the simplied steps are mainly in Part 1 and Part 2. 
 
 Compare to the original version, the changes can be summarized:
 
