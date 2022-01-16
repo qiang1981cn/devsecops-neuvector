@@ -39,8 +39,8 @@ Below steps have not been further scripted due to different considerations:
 Till Rancher 2.6.3, creating/importing RKE cluster via Rancher API/CLI is not supported.
 - It's infeasible to script the Jenkins setting for Anchore plugin, at lease by the study so far.
 Anchore plugin setting is bound to use web GUI and cannot be automated by script or code.
-- As workshop purpose includes to explain the CICD process, it probably is easier to present during demo if the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation.
-- The Jenkins job (Pipeline) operation (create / trigger build) is possible to script by Jenkins API. Currently it also remains as GUI operation for presentation at demo.
+- As workshop purpose includes explaining the CICD process, it probably is easier to present during demo if the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation.
+- The Jenkins job (Pipeline) operation (create / trigger build) is possible to script by Jenkins API. Currently it remains as GUI operation also for presentation at demo.
 
 
 # References
