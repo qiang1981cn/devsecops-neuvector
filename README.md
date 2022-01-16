@@ -28,10 +28,10 @@ The layout of lab is updated accordingly and shown in the scenario picture in th
 In particular, the standalone cluster for Harbor is removed and Harbor is now placed into the devsecops cluster.
 - Automate the manual config steps in Jenkins GUI, because those steps are most difficult to complete without a miss:
 1. add credentials for GitHub and SonarQube.
-2. Add the Env Setting for Harbor.
-3. Add the Plugin settings for SonarQube.
-- Remove the mannual steps to download the kubeconfig file of devsecops and copy/paste into Harbor VM. Now it’s automated as part of devsecops cluster setting.
-- Combine the installation steps of Longhorn, Harbor, SonarQube, Anchore and Jenkins, so no need execute the installation script for them one by one.
+2. add the Env Setting for Harbor.
+3. add the Plugin settings for SonarQube.
+- Remove the mannual steps to download the kubeconfig file of devsecops and copy/paste into Harbor VM. These steps are now automated as part of devsecops cluster setting.
+- Combine the installation steps of Longhorn, Harbor, SonarQube, Anchore and Jenkins, so no need to execute the installation script for them one by one.
 
 There are still some steps which have not been further scripted due to different considerations:
 
