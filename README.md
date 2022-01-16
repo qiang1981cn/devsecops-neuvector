@@ -26,7 +26,7 @@ Compare to the original version, the changes can be summarized:
 from 7 VM to 4 VM, and from 5 Clusters to 4 Clusters. 
 The layout of lab is updated accordingly and shown in the scenario picture in the top of the README file.
 In particular, the standalone cluster for Harbor is removed and Harbor is now placed into the devsecops cluster.
-- Automate the manual config steps in Jenkins GUI, because those steps are most difficult to do without a miss:
+- Automate the manual config steps in Jenkins GUI, because those steps are most difficult to complete without a miss:
 1. add credentials for GitHub and SonarQube.
 2. Add the Env Setting for Harbor.
 3. Add the Plugin settings for SonarQube.
