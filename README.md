@@ -33,13 +33,13 @@ In particular, the standalone cluster for Harbor is removed and Harbor is now pl
 - Remove the mannual steps to download the kubeconfig file of devsecops and copy/paste into Harbor VM. These steps are now automated as part of devsecops cluster setting.
 - Combine the installation steps of Longhorn, Harbor, SonarQube, Anchore and Jenkins, so no need to execute the installation script for them one by one.
 
-There are still some steps which have not been further scripted due to different considerations:
+Below steps have not been further scripted due to different considerations:
 
 - It's infeasible to automate the Rancher UI operation for creating/importing RKE2 Cluster.
 Till Rancher 2.6.3, creating/importing RKE cluster via Rancher API/CLI is not supported.
 - It's infeasible to script the Jenkins setting for Anchore plugin, at lease by the study so far.
 Anchore plugin setting is bound to use web GUI and cannot be automated by script or code.
-- As workshop purpose includes to explain the CICD process, it probably is esaier to present during demo if the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation.
+- As workshop purpose includes to explain the CICD process, it probably is easier to present during demo if the GitHub website operation (fork a project, setup token, edit the code) remain as GUI operation.
 - The Jenkins job (Pipeline) operation (create / trigger build) is possible to script by Jenkins API. Currently it also remains as GUI operation for presentation at demo.
 
 
