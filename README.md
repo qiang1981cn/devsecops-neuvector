@@ -16,8 +16,9 @@ This repository contains all the scripts and Kubernetes manifests for compliment
 # Background
 
 This repo is the short version of SUSE DevSecOps Workshop:
-https://github.com/dsohk/rancher-devsecops-workshop
 
+https://github.com/dsohk/rancher-devsecops-workshop
+https://github.com/xiaojinse/rancher-devsecops-workshop-ShortVersion
 
 
 # References
