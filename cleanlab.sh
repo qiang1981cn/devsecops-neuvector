@@ -11,8 +11,6 @@ echo
 function cleanup() {
   delete-vm $VM_PREFIX-rancher
   delete-vm $VM_PREFIX-devsecops 
-  delete-vm $VM_PREFIX-cluster1
-  delete-vm $VM_PREFIX-cluster2
   rm -f {mylab.*,ssh-mylab*.*,mylab*.txt,mylab-ssh-config,mylab_vm_prefix.sh,mylab*.sh,*.log}
   echo "Your lab environment has been cleaned up."
 }

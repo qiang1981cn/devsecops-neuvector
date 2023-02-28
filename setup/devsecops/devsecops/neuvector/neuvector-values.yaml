@@ -1,0 +1,17 @@
+controller:
+  replicas: 1
+  apisvc:
+    type: NodePort
+cve:
+  scanner:
+    replicas: 1
+manager:
+  ingress:
+    enabled: true
+    host: neuvector.xx.xx.xx.xx.sslip.io
+    annotations:
+      cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    tls: true
+    secretName: neuvector-tls-secret
+    

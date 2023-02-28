@@ -21,7 +21,7 @@ if [ ! -f mylab_env.txt ]; then
     echo >> mylab_env.txt
     eval "$SSH_VM cat myjenkins.txt >> mylab_env.txt"
     echo >> mylab_env.txt
-    eval "$SSH_VM cat myanchore.txt >> mylab_env.txt"
+    eval "$SSH_VM cat myneuvector.txt >> mylab_env.txt"
     echo >> mylab_env.txt
     eval "$SSH_VM cat mysonarqube.txt >> mylab_env.txt"
     eval "$SSH_VM cat mysonarqube.sh >> mylab_env.txt"

@@ -11,5 +11,3 @@ export KUBECONFIG=$HOME/.kube/devsecops.cfg
 helm uninstall sonarqube -n sonarqube
 kubectl delete ns sonarqube
 rm -rf helm-chart-sonarqube
-rm -f $HOME/mysonarqube.sh
-rm -r $HOME/mysonarqube.txt

@@ -23,8 +23,8 @@ https://github.com/dsohk/rancher-devsecops-workshop and
 
 # References
 
-* [Rancher Documentation](https://rancher.com/docs/)
 * [Neuvector](https://open-docs.neuvector.com/)
+* [Rancher Documentation](https://rancher.com/docs/)
 * [Jenkins on Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/)
 * [Longhorn](https://longhorn.io/docs/1.1.1/)
 * [Harbor Helm Chart](https://github.com/goharbor/harbor-helm)

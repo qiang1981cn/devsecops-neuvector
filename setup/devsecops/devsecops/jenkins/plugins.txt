@@ -16,5 +16,6 @@ blueocean
 sonar
 jacoco
 anchore-container-scanner
+neuvector-vulnerability-scanner
 pipeline-maven
 junit

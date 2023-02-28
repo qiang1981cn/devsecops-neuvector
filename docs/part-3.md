@@ -86,7 +86,7 @@ e) Choose your forked project `spring-petclinic` and click `Create Pipeline` to 
 
 f) Click `Build Now` to run this pipeline. 
 
-Pipeline will take about 20+ minutes to finish.
+Pipeline will take about 10+ minutes to finish.
 
 You can view the progress in the BlueOcean Plug-in/Jenkins UI and Rancher.
 

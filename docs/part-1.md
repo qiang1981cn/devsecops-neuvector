@@ -1,13 +1,12 @@
 
 # Part 1 - Build Your Lab Environment on AWS Lightsail
 
-This script will help you setup a lab environment with 4 VMs running on AWS Lightsail.
+This script will help you setup a lab environment with 2 VMs running on AWS Lightsail.
 
 Estimated Completion Time: 30 mins
 
-* Rancher Management Server v2.6.1 instance (1 VM)
-* DevSecOps RKE2 cluster running `Harbor`, `Jenkins`, `Anchore`, and `SonarQube` (1 VM)
-* 2 single-node RKE2-based clusters (1 VM each) for deploying applications.
+* Rancher Management Server v2.6.10 instance (1 VM)
+* DevSecOps RKE2 cluster running `Harbor`, `Jenkins`, `Neuvector`, `SonarQube`, and for deploying applications (1 VM)
 
 ## Pre-requisites
 
@@ -27,7 +26,7 @@ mkdir workshop
 ```
 
 ```
-git clone https://github.com/xiaojinse/rancher-devsecops-workshop-ShortVersion.git workshop
+git clone https://github.com/qiang1981cn/devsecops-neuvector.git workshop
 ```
 
 2) To view the content for the Cloned Repo, in your terminal execute below command
@@ -155,8 +154,6 @@ Here's the list of VMs running in your lab environment (See file: mylab_vm_list.
 +--------------------+--------------------+-------------------+----------+
 |       VMname       | privateIpAddress   |  publicIpAddress  |  state   |
 +--------------------+--------------------+-------------------+----------+
-|  suse0908-cluster2 |  172.26.22.100     |  54.178.109.244   |  running |
-|  suse0908-cluster1 |  172.26.12.11      |  54.250.113.71    |  running |
 |  suse0908-devsecops|  172.26.34.168     |  35.72.184.96     |  running |
 |  suse0908-rancher  |  172.26.36.153     |  35.72.34.68      |  running |
 +--------------------+--------------------+-------------------+----------+
@@ -239,7 +236,7 @@ To create a new cluster choose the `custom` option to provision clusters on exis
 
 ![Rancher UI](./Images-10-13-2021/part1-step4-1-rancher-ui-create-cluster-custom-devsecops-pg1.png)
 
-b) You will be presented with `Cluster:Create Custom`form. Enter the cluster name as `devsecops` and leave the rest of the settings as default and click `Create` button. You will be presented with cluster registration command to create the RKE cluster on your VM. Check the box 'Insecure: Select this to skip TLS...'. 
+b) You will be presented with `Cluster:Create Custom`form. Enter the cluster name as `devsecops` and set Kubernetes version as v1.22.xx then leave the rest of the settings as default and click `Create` button. You will be presented with cluster registration command to create the RKE cluster on your VM. Check the box 'Insecure: Select this to skip TLS...'. 
 Click on `registration command` to copy the command into your clipboard.
 
 ![Rancher UI](./Images-10-13-2021/part1-step4-2-rancher-ui-create-cluster-custom-devsecops-pg2.png)
@@ -300,15 +297,15 @@ While the devsecops cluster is being provisioned, you can continue with step 5 f
 
 
 
-### 3. Setup application in DevSecOps environment: Harbor, Anchore, SonarQube and Jenkins. 
+### 3. Setup application in DevSecOps environment: Harbor, Neuvector, SonarQube and Jenkins. 
 
 In this part, we will actually execute below tasks in devsecops VM. Most of them have been scripted.
 
 Step 1. Install tools like kubectl and helm.
 
-Step 2. Install Longhorn. It's needed to provide Persistent Volume for applications like Anchore, SonarQube and Jenkins.
+Step 2. Install Longhorn. It's needed to provide Persistent Volume for applications like Neuvector, SonarQube and Jenkins.
 
-Step 3. Install Anchore.
+Step 3. Install Neuvector.
 
 Step 4. Install SonarQube and automate necessary steps as:
 - Change the initial password (mandatory to start using SonarQube).
@@ -407,7 +404,7 @@ Please be aware that the installation will take time which varys due to your lab
 
 * Longhorn (approx 5 mins)
 * Harbor (approx 10 mins)
-* Anchore (approx 3/4 mins)
+* Neuvector (approx 1 mins)
 * Sonarqube (approx < 6 mins)
 * Jenkins (approx 5 mins)
 

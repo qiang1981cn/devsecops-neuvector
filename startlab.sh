@@ -60,7 +60,7 @@ check_sysreq;
 export VM_PREFIX=suse0908
 echo "export VM_PREFIX=$VM_PREFIX" > mylab_vm_prefix.sh
 
-export RANCHER_VERSION=v2.6.1
+export RANCHER_VERSION=v2.6.10
 echo "export RANCHER_VERSION=$RANCHER_VERSION" > mylab_rancher_version.sh
 
 title="Select Your Preferred AWS Environment to run your lab:"
@@ -120,8 +120,6 @@ export AWS_SIZE_2XLARGE="2xlarge_${AWSLS_VM_SIZE_SUFFIX}"
 echo "Provisioning VM in your AWS Lightsail region $AWS_REGION as lab environment ..."
 create-vm $VM_PREFIX-rancher $AWS_SIZE_MEDIUM
 create-vm $VM_PREFIX-devsecops $AWS_SIZE_2XLARGE "systemctl enable docker; systemctl start docker; zypper in -y git-core; docker pull susesamples/myjenkins:v1.0; zypper in -y nfs-client;"
-create-vm $VM_PREFIX-cluster1 $AWS_SIZE_MEDIUM 
-create-vm $VM_PREFIX-cluster2 $AWS_SIZE_MEDIUM 
 
 # wait until all VMs are running
 while list-vm | grep -q 'pending'
@@ -141,10 +139,8 @@ open-vm-standard-network-port $VM_PREFIX-devsecops
 open-vm-specific-network-port $VM_PREFIX-devsecops 6443 6443
 open-vm-specific-network-port $VM_PREFIX-devsecops 30000 32767
 open-vm-specific-network-port $VM_PREFIX-devsecops 30443 30443
-open-vm-standard-network-port $VM_PREFIX-cluster1
-open-vm-specific-network-port $VM_PREFIX-cluster1 30000 32767
-open-vm-standard-network-port $VM_PREFIX-cluster2
-open-vm-specific-network-port $VM_PREFIX-cluster2 30000 32767
+open-vm-specific-network-port $VM_PREFIX-devsecops 80 80
+open-vm-specific-network-port $VM_PREFIX-devsecops 443 443
 
 
 echo "Capture all the VM IP addresses into a file"
@@ -156,7 +152,7 @@ download-key-pair
 
 # write ssh file for easy access
 echo "Generating shortcut ssh files for VM access..."
-for vm in rancher devsecops cluster1 cluster2; do
+for vm in rancher devsecops; do
   VM_IP=`cat mylab_vm_list.txt | grep $VM_PREFIX-$vm | cut -d '|' -f 4 | xargs`
   echo "ssh -o StrictHostKeyChecking=no -i mylab.key ec2-user@$VM_IP" > ssh-mylab-$vm.sh
   chmod +x ssh-mylab-$vm.sh
@@ -167,7 +163,7 @@ touch mylab-ssh-config
 echo "Host *" > mylab-ssh-config
 echo "  StrictHostKeyChecking no" >> mylab-ssh-config
 echo >> mylab-ssh-config
-for vm in rancher devsecops cluster1 cluster2; do
+for vm in rancher devsecops; do
   VM_IP=`cat mylab_vm_list.txt | grep $VM_PREFIX-$vm | cut -d '|' -f 4 | xargs`
   echo "Host $vm" >> mylab-ssh-config
   echo "  HostName $VM_IP" >> mylab-ssh-config

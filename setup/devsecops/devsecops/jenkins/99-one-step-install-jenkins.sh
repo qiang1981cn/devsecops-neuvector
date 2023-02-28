@@ -15,8 +15,8 @@ sudo docker login $HARBOR_URL -u $HARBOR_USR -p $HARBOR_PWD
 # sudo docker tag myjenkins:v1.0 $HARBOR_URL/library/myjenkins:v1.0
 
 echo "To save time, pull the prebuilt myjenkins docker image ..."
-sudo docker pull susesamples/myjenkins:v1.0
-sudo docker tag susesamples/myjenkins:v1.0 $HARBOR_URL/library/myjenkins:v1.0
+sudo docker pull chengjianqiang/myjenkins:v1.0
+sudo docker tag chengjianqiang/myjenkins:v1.0 $HARBOR_URL/library/myjenkins:v1.0
 
 echo "Upload myjenkins image to Harbor private registry ..."
 sudo docker push $HARBOR_URL/library/myjenkins:v1.0
@@ -41,6 +41,7 @@ fi
 source $HOME/myharbor.sh
 source $HOME/mygithub.sh
 source $HOME/mysonarqube.sh
+source $HOME/myneuvector.sh
 
 echo Create jenkins namespace
 kubectl create ns jenkins
@@ -59,7 +60,13 @@ echo Customize jenkins-values.yaml
 sed "s/THE_HARBOR_URL/$HARBOR_URL/g" jenkins-values-template.yaml > my-jenkins-values.tmp1.yaml
 sed "s/GITHUB_SECRET/$GITHUB_SECRET/g" my-jenkins-values.tmp1.yaml > my-jenkins-values.tmp2.yaml
 sed "s/SONARQUBE_SECRET/$SONARQUBE_SECRET/g" my-jenkins-values.tmp2.yaml > my-jenkins-values.tmp3.yaml
-sed "s/SONARQUBE_URL/$SONARQUBE_URL/g" my-jenkins-values.tmp3.yaml > my-jenkins-values.yaml
+
+sed "s/THE_HARBOR_USER/$HARBOR_USR/g" my-jenkins-values.tmp3.yaml > my-jenkins-values.tmp4.yaml
+sed "s/THE_HARBOR_PW/$HARBOR_PWD/g" my-jenkins-values.tmp4.yaml > my-jenkins-values.tmp5.yaml
+sed "s/NEUVECTOR_IP/$NEUVECTOR_IP/g" my-jenkins-values.tmp5.yaml > my-jenkins-values.tmp6.yaml
+sed "s/NEUVECTOR_NODEPORT/$NEUVECTOR_NODEPORT/g" my-jenkins-values.tmp6.yaml > my-jenkins-values.tmp7.yaml
+
+sed "s/SONARQUBE_URL/$SONARQUBE_URL/g" my-jenkins-values.tmp7.yaml > my-jenkins-values.yaml
 #sed "s/SONARQUBE_URL/$SONARQUBE_URL/g" my-jenkins-values.tmp3.yaml > my-jenkins-values.yaml
 #rm -f my-jenkins-values.tmp*.yaml
 

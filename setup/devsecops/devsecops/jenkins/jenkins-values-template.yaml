@@ -77,7 +77,20 @@ controller:
             installations:                           # mandatory
               - name: "My SonarQube"                         
                 serverUrl: "http://SONARQUBE_URL"
-                credentialsId: sonarqube-spring-petclinic   
+                credentialsId: sonarqube-spring-petclinic
+          neuvector:
+            source: "NeuVector Scanner"
+            controllerIP: NEUVECTOR_IP
+            controllerPort: NEUVECTOR_NODEPORT
+            user: "admin"
+            password: "admin"
+            timeout: 0
+            registries:
+            - nickname: "harbor_reg"
+              regUrl: "https://THE_HARBOR_URL"
+              regUsername: THE_HARBOR_USER
+              regPassword: THE_HARBOR_PW
+
 persistence:
   accessMode: "ReadWriteMany"
   storageClass: "longhorn"

@@ -69,7 +69,7 @@ echo "Distribute the self-signed harbor certs to cluster devsecops  ..."
 sudo ./04-configure-containerd-registry.sh
 sudo ./04-configure-docker-client.sh
 
-for vm in rancher cluster1 cluster2; do
+for vm in rancher devsecops; do
   echo
   echo "Distribute the self-signed harbor certs to cluster $vm ..."
   scp myharbor.sh $vm:~

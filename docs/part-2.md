@@ -6,14 +6,14 @@
 
 Before we begin to configure Github & Jenkins, let's look at our lab environment.
 
-NOTE: Make sure Jenkins, Anchore, and Sonarqube installation has been completed as per final step of Part 1.
+NOTE: Make sure Jenkins, Neuvector, and Sonarqube installation has been completed as per final step of Part 1.
 
 1) Ensure you are on your local workstation/machine Terminal where we have our git repo cloned.
 
 2) Run the command below to show your current lab environment. This shows you all information you need to configure your Jenkins in this section.
 
 ```
-./show-mylab-env.sh
+./show-my-lab-env.sh
 ```
 
 Sample output below.
@@ -35,10 +35,10 @@ Password: 5kSVag82C401imqWCXvtDP
 Your Jenkins Github webhook Payload URL:
 http://18.179.27.149:31672/github-webhook/
 
-Your Anchore is now successfully provisioned.
-URL: http://anchore-anchore-engine-api.anchore.svc.cluster.local:8228/v1/
+Your Neuvector is now successfully provisioned.
+URL: https://neuvector.18.179.27.149.sslip.io
 User: admin
-Password: aYtuKs6CO1BoEH3DwlhHNd4fZZCfETL0
+Password: admin
 
 Your Sonarqube instance is ready ...
 http://18.179.27.149:32216/login
@@ -60,12 +60,12 @@ In this workshop, we will use two GitHub repositories:
 
 1) Source code repository for JAVA application: spring-petclinic.
 ```
-https://github.com/dsohk/spring-petclinic
+https://github.com/qiang1981cn/spring-petclinic
 ```
 2) The helm repository for Helm package of spring-petclinic-helmchart
 
 ```
-https://github.com/dsohk/spring-petclinic-helmchart
+https://github.com/qiang1981cn/spring-petclinic-helmchart
 ```
 
 Both of the original repositories shall be forked into your own GitHub.
@@ -78,7 +78,7 @@ so later, Jenkins can run pipeline correctly for it.
 1) Open a new Browser & past the below link
 
 ```
-https://github.com/dsohk/spring-petclinic
+https://github.com/qiang1981cn/spring-petclinic
 ```
 
 2) Click on `Fork` Icon on top right hand window pane & select your own account name. 
@@ -138,7 +138,7 @@ f) Click `Add Webhook` button.
 1) Open a new Browser & paste the below link
 
 ```
-https://github.com/dsohk/spring-petclinic-helmchart
+https://github.com/qiang1981cn/spring-petclinic-helmchart
 ```
 2) Click on Fork Icon on top right hand window pane & select your own account where the repo will be forked.
 
@@ -149,62 +149,7 @@ Till now, the GitHub repositories are ready to work with Jenkins.
 ## 3. Configure Jenkins 
 
 Most of the Jenkins configuration has been automated by Jenkins Plugin: `Jenkins Configuration as Code`.
-However, the Anchore part is not covered by the `Jenkins Configuration as Code` so we have to mannually setup it.
-
-a) Open Jenkins URL in your browser and login.
-
-b) Navigate to `Managing Jenkins` > `Configure System`, and Scroll down to Achore Container Image Scanner Section.
-
-Provide Anchore URL & Credentials. 
-
-a) Engine URL: (Your Anchore URL)
-
-b) Engine Username: (Your Anchore username)
-
-c) Engine Password: (Your Anchore password)
-
-![Configure Anchore](./Images-10-13-2021/part2-configure-Jenkins-Anchore.png)
-
-Finally click `Save` button to save all the Jenkins configuration settings.
+So we don't have to mannually setup it.
 
 With this, we are ready to move to the [Step 3 - Build Your Jenkins Pipelines to deploy Spring-Petclinic App](part-3.md)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

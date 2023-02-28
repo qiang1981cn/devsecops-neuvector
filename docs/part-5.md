@@ -1,9 +1,5 @@
 # Part 5 - Put Everything Together
 
-Watch a video to explain what we are going to do in part 5:
-
-[![Workshop Part 5](https://img.youtube.com/vi/1vqZvtFKYbI/0.jpg)](https://www.youtube.com/watch?v=1vqZvtFKYbI)
-
 ## 1. Modify source code
 
 In part 4, you successfully build our containerized application and it's running. 
@@ -42,7 +38,7 @@ b) Below screenshot indicates it's in container creation stage.
 ![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-start-pg1.png)
 
 
-c) Anchore has completed container image scanning phase and post that we get to the Approval junction.
+c) neuvector has completed container image scanning phase and post that we get to the Approval junction.
 
 ![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-approval-pg2.png)
 
@@ -53,19 +49,12 @@ d) Once the changes are accepted by clicking on `Yes` GitHub would be updated wi
 
 ![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-approval-pg3-previous-build-terminating-pg3.png)
 
-You will see Build1 (v1.0.1) containaer is up and running (1/1), however build2 container (v1.0.2) is been coming up (0/1)
-
-![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-Fleet-updating.png)
-
-![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-approval-pg4-latest.png)
 
 e) Check Git Repo status in Rancher UI and the status would be in `active` state, 
 
 Rancher UI > `Global Apps` > `Continous Delivery` > `Git Repo`
 
-![Rancher UI](./Images-10-13-2021/part5-pet-clinic-pipeline-build-ver2-job-success-pg5.png)
-
-f) In Rancher UI > `Global Apps` > `Cluster Explorer` `Cluster2` > `Service Discovery` > `Services` 
+f) In Rancher UI > `Global Apps` > `Cluster Explorer` `devsecops` > `Service Discovery` > `Services` 
 
 ![Rancher UI](./Images-10-13-2021/part6-pet-clinic-pipeline-build-ver2-App-running-cluster2-pg7.png)
 
@@ -75,7 +64,7 @@ You have successfully made changes to our code in GitHub, Git remain single sour
 
 Congratulation! you have sucessfully build our CI/CD pipeline with SUSE Rancher for continuous development and delviery. We hope you have enjoyed exploring a little of what Rancher can do to your kubenetes development, deplyment, and management.
 
-**When you have finished playing with your lab environment go to Part 6 - Cleaning up the lab environment**
+**When you have finished playing with your lab environment go to [Cleaning up the lab environment](part-6.md) - Cleaning up the lab environment**
 
 
 
