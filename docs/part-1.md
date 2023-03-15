@@ -3,16 +3,16 @@
 
 This script will help you setup a lab environment with 2 VMs running on AWS Lightsail.
 
-Estimated Completion Time: 30 mins
+Estimated Completion Time: 25 mins
 
 * Rancher Management Server v2.6.10 instance (1 VM)
-* DevSecOps RKE2 cluster running `Harbor`, `Jenkins`, `Neuvector`, `SonarQube`, and for deploying applications (1 VM)
+* DevSecOps RKE2 cluster running `Harbor`, `Jenkins`, `Neuvector`, `SonarQube`, and for deploying sample applications (1 VM)
 
 ## Pre-requisites
 
 * Github account
 * AWS account with AWS Lightsail full admin access
-* Linux workstation with `git` and `aws` command line v2 installed and AWS credential key configured.
+* Linux workstation(or mac) with `git` and `aws` command line v2 installed and AWS credential key configured.
 
 
 ## To build the lab on AWS Lightsail
@@ -402,10 +402,10 @@ http://35.72.184.96:30771/github-webhook/
 
 Please be aware that the installation will take time which varys due to your lab environment status.
 
-* Longhorn (approx 5 mins)
+* Longhorn (approx 3 mins)
 * Harbor (approx 10 mins)
 * Neuvector (approx 1 mins)
-* Sonarqube (approx < 6 mins)
+* Sonarqube (approx 3 mins)
 * Jenkins (approx 5 mins)
 
 

@@ -1,6 +1,6 @@
 # Build Your Own DevSecOps using Jenkins + Neuvector + Rancher
 
-![SUSE Rancher - DevSecOps Scenario](./docs/overview.png)
+![SUSE Rancher - DevSecOps Scenario](./docs/overview.jpg)
 
 
 This repository contains all the scripts and Kubernetes manifests for complimenting its hands-on workshop.
